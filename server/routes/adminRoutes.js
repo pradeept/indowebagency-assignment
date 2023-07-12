@@ -2,6 +2,7 @@ const express = require('express');
 const {getAllAccounts,createAccount,editAccount,deleteAccount} = require('../controller/admin/accountsController');
 const {getAllCategories,createCategory, deleteCategory, updateCategory } = require('../controller/admin/categoryController');
 const {login} =require('../controller/admin/loginController');
+const { getAllPosts } = require('../controller/admin/postsController');
 
 const adminRoutes = express.Router();
 
@@ -18,6 +19,9 @@ adminRoutes.get('/category',getAllCategories);
 adminRoutes.put('/category',updateCategory);
 adminRoutes.post('/category',createCategory);
 adminRoutes.delete('/category/:name',deleteCategory);
+
+//posts
+adminRoutes.get('/posts',getAllPosts)
 
 
 module.exports = adminRoutes;

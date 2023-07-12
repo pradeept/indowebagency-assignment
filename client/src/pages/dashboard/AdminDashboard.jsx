@@ -5,10 +5,11 @@ import Category from '../../components/category/Category';
 import Account from '../../components/accounts/Account';
 import { getCategories } from "../../services/admin/categoryAPI.handler";
 import { getAccounts } from "../../services/admin/accounts.handler";
+import ImageCardAdmin from "../../components/posts/ImageCard.admin";
 
 const AdminDashboard = ()=>{
 
-    const [selected,setSelected] = useState('');
+    const [selected,setSelected] = useState('Posts');
 
     const [cats,setCats] = useState([]);
 
@@ -17,6 +18,7 @@ const AdminDashboard = ()=>{
     const [vendorAccounts,setVendorAccounts] = useState([]);
 
     const menuItems = ["Posts","Category","Accounts"]
+
 
     useEffect(()=>{
         getCategories().then(
@@ -37,12 +39,12 @@ const AdminDashboard = ()=>{
             setUserAccounts([]);
             setVendorAccounts([]);
         })
-    })
+    },[])
 
 
     const displayComp = ()=>{
         if(selected === "Posts"){
-            return 
+            return <ImageCardAdmin />
         }else if(selected === "Category"){
             return <Category categoryList={cats} type="admin"/>
         }else if(selected === "Accounts"){
